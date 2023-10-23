@@ -114,6 +114,7 @@ body {
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
   background-color: var(--bs-body-bg);
+  text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -374,6 +375,7 @@ caption {
 th {
   text-align: inherit;
   text-align: -webkit-match-parent;
+  text-align: match-parent;
 }
 
 thead,
@@ -436,6 +438,7 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  appearance: button;
 }
 
 button:not(:disabled),
@@ -497,6 +500,7 @@ legend+* {
 [type="search"] {
   outline-offset: -2px;
   -webkit-appearance: textfield;
+  appearance: textfield;
 }
 
 /* rtl:raw:
@@ -518,6 +522,7 @@ legend+* {
 ::file-selector-button {
   font: inherit;
   -webkit-appearance: button;
+  appearance: button;
 }
 
 output {
@@ -3003,6 +3008,7 @@ textarea.form-control-lg {
   background-size: contain;
   border: none;
   appearance: none;
+  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   transition: background-color 0.25s ease, border-color 0.25s ease, background-position 0.15s ease-in-out, opacity 0.15s ease-out, box-shadow 0.15s ease-in-out;
 }
@@ -3639,6 +3645,7 @@ textarea.form-control.is-invalid {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
+  -webkit-user-select: none;
   user-select: none;
   border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
   border-radius: var(--bs-btn-border-radius);
@@ -6426,6 +6433,7 @@ fieldset:disabled .btn {
 .btn-close:disabled,
 .btn-close.disabled {
   pointer-events: none;
+  -webkit-user-select: none;
   user-select: none;
   opacity: 0.25;
 }
@@ -8060,13 +8068,16 @@ fieldset:disabled .btn {
 }
 
 .placeholder-wave {
+  -webkit-mask-image: linear-gradient(130deg, #000 55%, rgba(0, 0, 0, 0.8) 75%, #000 95%);
   mask-image: linear-gradient(130deg, #000 55%, rgba(0, 0, 0, 0.8) 75%, #000 95%);
+  -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
   animation: placeholder-wave 2s linear infinite;
 }
 
 @keyframes placeholder-wave {
   100% {
+    -webkit-mask-position: -200% 0%;
     mask-position: -200% 0%;
   }
 }
@@ -8084,7 +8095,7 @@ fieldset:disabled .btn {
 
 .text-bg-secondary {
   color: #000 !important;
-  background-color: RGBA(, 128, 154, var(--bs-bg-opacity, 1)) !important;
+  background-color: RGBA(0, 128, 154, var(--bs-bg-opacity, 1)) !important;
 }
 
 .text-bg-success {
@@ -10840,14 +10851,17 @@ fieldset:disabled .btn {
 }
 
 .user-select-all {
+  -webkit-user-select: all !important;
   user-select: all !important;
 }
 
 .user-select-auto {
+  -webkit-user-select: auto !important;
   user-select: auto !important;
 }
 
 .user-select-none {
+  -webkit-user-select: none !important;
   user-select: none !important;
 }
 
@@ -20521,6 +20535,7 @@ fieldset:disabled .btn {
   position: relative;
   overflow: hidden;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .btn:not([class*="btn-outline-"]) {
@@ -20671,14 +20686,14 @@ fieldset:disabled .btn {
 
 .btn-secondary,
 .btn.bg-gradient-secondary {
-  box-shadow: 0 3px 3px 0 rgba(, 128, 154, 0.15), 0 3px 1px -2px rgba(, 128, 154, 0.2), 0 1px 5px 0 rgba(, 128, 154, 0.15);
+  box-shadow: 0 3px 3px 0 rgba(0, 128, 154, 0.15), 0 3px 1px -2px rgba(0, 128, 154, 0.2), 0 1px 5px 0 rgba(0, 128, 154, 0.15);
 }
 
 .btn-secondary:hover,
 .btn.bg-gradient-secondary:hover {
   background-color: #7b809a;
   border-color: #7b809a;
-  box-shadow: 0 14px 26px -12px rgba(, 128, 154, 0.4), 0 4px 23px 0 rgba(, 128, 154, 0.15), 0 8px 10px -5px rgba(, 128, 154, 0.2);
+  box-shadow: 0 14px 26px -12px rgba(0, 128, 154, 0.4), 0 4px 23px 0 rgba(0, 128, 154, 0.15), 0 8px 10px -5px rgba(0, 128, 154, 0.2);
 }
 
 .btn-secondary .btn.bg-outline-secondary,
@@ -21769,7 +21784,7 @@ fieldset:disabled .btn {
 
 .dark-version .fc-theme-standard td,
 .dark-version .fc-theme-standard th {
-  border-color: rgba(, 128, 154, 0.3);
+  border-color: rgba(0, 128, 154, 0.3);
 }
 
 .dark-version .dataTable-sorter::after {
@@ -22777,7 +22792,7 @@ label,
 }
 
 .bg-gradient-faded-secondary {
-  background-image: radial-gradient(370px circle at 80% 50%, rgba(, 128, 154, 0.6) 0, #626780 100%);
+  background-image: radial-gradient(370px circle at 80% 50%, rgba(0, 128, 154, 0.6) 0, #626780 100%);
 }
 
 .bg-gradient-faded-success {
@@ -22817,7 +22832,7 @@ label,
 }
 
 .bg-gradient-faded-secondary-vertical {
-  background-image: radial-gradient(200px circle at 50% 70%, rgba(, 128, 154, 0.3) 0, #7b809a 100%);
+  background-image: radial-gradient(200px circle at 50% 70%, rgba(0, 128, 154, 0.3) 0, #7b809a 100%);
 }
 
 .bg-gradient-faded-success-vertical {
@@ -27491,10 +27506,11 @@ span.flatpickr-weekday {
   background: #fff;
   cursor: default;
   box-shadow: inset 0 0 1px #fff, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
-  webkit-transition: .3s ease 0s;
+  -webkit-transition: .3s ease 0s;
   -moz-transition: .3s ease 0s;
   -ms-transition: .3s ease 0s;
   -o-transform: .3s ease 0s;
+  transform: .3s ease 0s;
   transition: .3s ease 0s;
 }
 
@@ -27822,8 +27838,8 @@ pre[class*="language-"] {
   overflow: hidden !important;
   overflow-anchor: none;
   -ms-overflow-style: none;
-  touch-action: auto;
   -ms-touch-action: auto;
+  touch-action: auto;
 }
 
 /*
@@ -27832,8 +27848,8 @@ pre[class*="language-"] {
 .ps__rail-x {
   display: none;
   opacity: 0;
-  transition: background-color .2s linear, opacity .2s linear;
   -webkit-transition: background-color .2s linear, opacity .2s linear;
+  transition: background-color .2s linear, opacity .2s linear;
   height: 15px;
   /* there must be 'bottom' or 'top' for ps__rail-x */
   bottom: 0px;
@@ -27844,8 +27860,8 @@ pre[class*="language-"] {
 .ps__rail-y {
   display: none;
   opacity: 0;
-  transition: background-color .2s linear, opacity .2s linear;
   -webkit-transition: background-color .2s linear, opacity .2s linear;
+  transition: background-color .2s linear, opacity .2s linear;
   width: 15px;
   /* there must be 'right' or 'left' for ps__rail-y */
   right: 0;
@@ -27884,8 +27900,8 @@ pre[class*="language-"] {
 .ps__thumb-x {
   background-color: #aaa;
   border-radius: 6px;
-  transition: background-color .2s linear, height .2s ease-in-out;
   -webkit-transition: background-color .2s linear, height .2s ease-in-out;
+  transition: background-color .2s linear, height .2s ease-in-out;
   height: 6px;
   /* there must be 'bottom' for ps__thumb-x */
   bottom: 2px;
@@ -27896,8 +27912,8 @@ pre[class*="language-"] {
 .ps__thumb-y {
   background-color: #aaa;
   border-radius: 6px;
-  transition: background-color .2s linear, width .2s ease-in-out;
   -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+  transition: background-color .2s linear, width .2s ease-in-out;
   width: 6px;
   /* there must be 'right' for ps__thumb-y */
   right: 2px;
