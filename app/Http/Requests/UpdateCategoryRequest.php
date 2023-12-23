@@ -23,8 +23,8 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'             => 'bail|required|min:3',
-            'slug'             => 'unique:categories,slug,'.$this->id,
+            'name' => 'bail|required|min:3',
+            'slug' => 'unique:categories,slug,'.$this->id,
         ];
     }
 
@@ -36,8 +36,8 @@ class UpdateCategoryRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'name' => Str::title($this->name),
-            'slug' => Str::slug($this->name),
+            'name'        => Str::title($this->name),
+            'slug'        => Str::slug($this->name)
         ]);
     }
 }

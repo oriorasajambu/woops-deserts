@@ -64,7 +64,7 @@ class CategoryController extends Controller
             'page' => 'categories',
             'category' => $category,
         ];
-        return view('admin.contents.category.create', $data);
+        return view('admin.contents.category.edit', $data);
     }
 
     /**

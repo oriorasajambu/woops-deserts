@@ -12,7 +12,7 @@
                         <div
                             class="d-flex justify-content-between align-items-center bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">@lang('category.table.title')</h6>
-                            <a href="/category/create" class="btn bg-gradient-success me-3">@lang('category.button.add')</a>
+                            <a href="{{ route('category.create') }}" class="btn bg-gradient-success me-3">@lang('category.button.add')</a>
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
@@ -21,9 +21,11 @@
                                 <thead>
                                     <tr>
                                         <th class="text-secondary text-xxs font-weight-bolder opacity-7">
-                                            @lang('category.table.name')</th>
+                                            @lang('category.table.name')
+                                        </th>
                                         <th class="text-secondary text-xxs font-weight-bolder opacity-7">
-                                            @lang('category.table.action')</th>
+                                            @lang('category.table.action')
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,14 +37,15 @@
                                                 </div>
                                             </td>
                                             <td class="d-flex align-middle gap-1">
-                                                <form method="POST" action="/category/{{ $category->id }}">
+                                                <form method="POST" action="{{ route('category.destroy', $category->id) }}">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit"
                                                         class="btn btn-outline-primary">@lang('category.button.delete')</button>
                                                 </form>
-                                                <a href="/category/{{ $category->id }}/edit"
-                                                    class="btn btn-outline-secondary">@lang('category.button.edit')</a>
+                                                <a href="{{ route('category.edit', $category->id) }}"
+                                                    class="btn btn-outline-secondary">@lang('category.button.edit')
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

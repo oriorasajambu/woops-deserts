@@ -24,6 +24,7 @@
 
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ url('assets/admin/css/material-dashboard.css?v=3.1.0') }}" rel="stylesheet" />
+    <link id="pagestyle" href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet" />
     @yield('heads')
 </head>
 

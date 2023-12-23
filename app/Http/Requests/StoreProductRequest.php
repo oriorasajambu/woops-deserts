@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-class StoreCategoryRequest extends FormRequest
+class StoreProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,13 +18,17 @@ class StoreCategoryRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'bail|required|min:3',
-            'slug' => 'unique:categories,slug',
+            'category' => 'required',
+            'name' => 'required|min:5',
+            'slug' => 'unique:products,slug',
+            'description' => 'required|min:5',
+            'price' => 'required|numeric',
+            'image' => 'required|mimes:jpeg,png,jpg,gif|max:4096',
         ];
     }
 
@@ -38,6 +42,7 @@ class StoreCategoryRequest extends FormRequest
         $this->merge([
             'name' => Str::title($this->name),
             'slug' => Str::slug($this->name),
+            'description' => Str::title($this->description),
         ]);
     }
 }
