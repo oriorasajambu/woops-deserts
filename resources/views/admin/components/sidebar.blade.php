@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $page == 'categories' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('category.index') }}">
+                <a class="nav-link {{ $page == 'categories' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('category') }}">
                     <div class="{{ $page == 'categories' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
@@ -29,45 +29,42 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $page == 'products' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('product.index') }}">
+                <a class="nav-link {{ $page == 'products' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('product') }}">
                     <div class="{{ $page == 'products' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">receipt_long</i>
                     </div>
                     <span class="nav-link-text ms-1">@lang('sidebar.products')</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $page == 'postage_cost' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('postage-cost.index') }}">
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ $page == 'postage_cost' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('postage') }}">
                     <div class="{{ $page == 'postage_cost' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">notifications</i>
                     </div>
                     <span class="nav-link-text ms-1">@lang('sidebar.postage_cost')</span>
                 </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-8">@lang('sidebar.report.title')</h6>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $page == 'expense' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('expense.index') }}">
-                    <div class="{{ $page == 'expense' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">person</i>
+            </li> --}}
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ $page == 'configs' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('config') }}">
+                    <div class="{{ $page == 'configs' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">settings</i>
                     </div>
-                    <span class="nav-link-text ms-1">@lang('sidebar.report.expense')</span>
+                    <span class="nav-link-text ms-1">@lang('sidebar.configs')</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $page == 'sales' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('sales.index') }}">
-                    <div class="{{ $page == 'sales' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">login</i>
-                    </div>
-                    <span class="nav-link-text ms-1">@lang('sidebar.report.sales')</span>
-                </a>
-            </li>
+            </li> --}}
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-8">@lang('sidebar.billing.title')</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $page == 'order' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('order.index') }}">
+                <a class="nav-link {{ $page == 'invoices' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('invoices') }}">
+                    <div class="{{ $page == 'invoices' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">assignment</i>
+                    </div>
+                    <span class="nav-link-text ms-1">@lang('sidebar.billing.invoices')</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $page == 'order' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('order') }}">
                     <div class="{{ $page == 'order' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">person</i>
                     </div>
@@ -75,19 +72,30 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $page == 'payment' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('payment.index') }}">
+                <a class="nav-link {{ $page == 'payment' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('payment') }}">
                     <div class="{{ $page == 'payment' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">login</i>
                     </div>
                     <span class="nav-link-text ms-1">@lang('sidebar.billing.payment')</span>
                 </a>
             </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-8">@lang('sidebar.report.title')</h6>
+            </li>
             <li class="nav-item">
-                <a class="nav-link {{ $page == 'invoices' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('invoices.index') }}">
-                    <div class="{{ $page == 'invoices' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">assignment</i>
+                <a class="nav-link {{ $page == 'expense' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('expense') }}">
+                    <div class="{{ $page == 'expense' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">person</i>
                     </div>
-                    <span class="nav-link-text ms-1">@lang('sidebar.billing.invoices')</span>
+                    <span class="nav-link-text ms-1">@lang('sidebar.report.expense')</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $page == 'sales' ? 'text-white active bg-gradient-primary' : 'text-dark' }}" href="{{ route('sales') }}">
+                    <div class="{{ $page == 'sales' ? 'text-white' : 'text-dark' }} text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">login</i>
+                    </div>
+                    <span class="nav-link-text ms-1">@lang('sidebar.report.sales')</span>
                 </a>
             </li>
         </ul>

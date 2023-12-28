@@ -26,6 +26,7 @@
     <link id="pagestyle" href="{{ url('assets/admin/css/material-dashboard.css?v=3.1.0') }}" rel="stylesheet" />
     <link id="pagestyle" href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet" />
     @yield('heads')
+    @livewireStyles
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -48,12 +49,24 @@
     <script src="{{ url('assets/admin/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ url('assets/admin/js/plugins/chartjs.min.js') }}"></script>
 
-    @yield('scripts')
-
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ url('assets/admin/js/material-dashboard.min.js?v=3.1.0') }}"></script>
+    
+    @livewireScripts
+
+    @yield('scripts')
+
+    <script type="text/javascript">
+        // closing any modal dynamically
+        Livewire.on('cancel', modal => {
+            if (typeof modal === "string" || modal.length === 0 || modal === null) return;
+            let myModalEl = document.getElementById(modal);
+            let instance = bootstrap.Modal.getInstance(myModalEl)
+            instance.hide();
+        });
+    </script>
 </body>
 
 </html>

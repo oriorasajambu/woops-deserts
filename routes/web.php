@@ -3,14 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Public\PublicController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ExpenseReportController;
-use App\Http\Controllers\Admin\InvoicesController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\PostageCostController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SalesReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,16 +16,22 @@ use App\Http\Controllers\Admin\SalesReportController;
 */
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/', [PublicController::class, 'index']);
+    Route::get('/', [PublicController::class, 'index'])->name('dashboard');
+    Route::get('/cart', [PublicController::class, 'cart'])->name('cart');
 });
 
-
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::resource('category', CategoryController::class);
-Route::resource('product', ProductController::class);
-Route::resource('postage-cost', PostageCostController::class);
-Route::resource('expense', ExpenseReportController::class);
-Route::resource('sales', SalesReportController::class);
-Route::resource('order', OrderController::class);
-Route::resource('payment', PaymentController::class);
-Route::resource('invoices', InvoicesController::class);
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'index')->name('admin');
+    Route::get('/category', 'category')->name('category');
+    Route::get('/product', 'product')->name('product');
+    Route::get('/config', 'config')->name('config');
+    Route::get('/postage', 'postage')->name('postage');
+    Route::get('/expense', 'expense')->name('expense');
+    Route::get('/sales', 'sales')->name('sales');
+    Route::get('/order', 'order')->name('order');
+    Route::get('/payment', 'payment')->name('payment');
+    Route::get('/invoices', 'invoices')->name('invoices');
+    Route::get('/download/{invoice}/invoice', 'downloadInvoice')->name('invoices.download');
+    Route::get('/download/{payment}/payment', 'downloadReceipt')->name('receipt.download');
+    Route::get('/logout', 'logout')->name('logout');
+});

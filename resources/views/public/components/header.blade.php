@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 text-center mx-auto">
-                    <a href="https://www.creative-tim.com/product/material-kit">
+                    <a href="#">
                         <img src="{{ url('assets/public/img/logo.png') }}" class="mb-3 footer-logo" alt="main_logo">
                     </a>
                 </div>

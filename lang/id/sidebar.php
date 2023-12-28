@@ -3,6 +3,7 @@ return [
 	'dashboard' => 'Dasbor',
     'categories' => 'Kategori',
     'products' => 'Produk',
+    'configs' => 'Konfigurasi',
     'postage_cost' => 'Ongkos Kirim',
     'report' => [
         'title' => 'Laporan',

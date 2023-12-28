@@ -4,6 +4,11 @@ return [
         'index' => 'Category',
         'create' => 'Category - Create'
     ],
+    'modal' => [
+        'add' => 'Create New Category',
+        'delete' => 'Delete Category',
+        'edit' => 'Edit Category',
+    ],
 	'button' => [
         'add' => 'Add Category',
         'delete' => 'Delete Category',

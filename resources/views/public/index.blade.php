@@ -25,12 +25,14 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ url('assets/public/css/material-kit.css?v=3.0.4') }}" rel="stylesheet" />
     @yield('heads')
+
+    @livewireStyles
 </head>
 
 <body class="index-page bg-gray-200">
 
     <!-- Navbar -->
-    @include('public.components.navbar')
+    @livewire('navbar.dashboard-navbar')
     <!-- End Navbar -->
 
     @yield('content')
@@ -60,10 +62,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
     <script src="{{ url('assets/public/js/material-kit.min.js?v=3.0.4') }}" type="text/javascript"></script>
 
-
     @yield('scripts')
-    
 
+    @livewireScripts
 </body>
 
 </html>

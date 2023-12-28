@@ -14,6 +14,7 @@ class Product extends Model
         'name',
         'slug',
         'description',
+        'variant',
         'price',
         'image',
         'original',
@@ -35,5 +36,18 @@ class Product extends Model
     public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public static function search($query)
+    {
+        return empty($query) ? static::select() :
+                static::where(function ($keyword) use($query){ //make sure to group your where & whereHas statements together
+            $keyword->where('name', 'like', '%'.$query.'%')
+                ->orWhere('id', 'like', '%' . $query . '%')
+                ->orWhere('description', 'like', '%' . $query . '%')
+                ->orWhere('variant', 'like', '%' . $query . '%')
+                ->orWhere('price', 'like', '%' . $query . '%')
+                ->orWhere('slug', 'like', '%' . $query . '%');
+            });
     }
 }

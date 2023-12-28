@@ -37,6 +37,10 @@
                             @lang('sidebar.billing.payment')
                         @break
 
+                        @case('configs')
+                            @lang('sidebar.configs')
+                        @break
+
                         @default
                             @lang('sidebar.billing.invoices')
                     @endswitch
@@ -74,6 +78,10 @@
 
                     @case('payment')
                         @lang('sidebar.billing.payment')
+                    @break
+
+                    @case('configs')
+                        @lang('sidebar.configs')
                     @break
 
                     @default
@@ -177,7 +185,7 @@
                         </ul>
                     </li>
                     <li class="ps-2 nav-item d-flex align-items-center">
-                        <a href="/" class="nav-link text-body font-weight-bold px-0">
+                        <a href="{{ route('logout') }}" class="nav-link text-body font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
                             <span class="d-sm-inline d-none">Log out</span>
                         </a>
