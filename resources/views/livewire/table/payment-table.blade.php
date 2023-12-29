@@ -26,9 +26,9 @@
         <div class="input-group input-group-static">
             <label for="orderBy" class="ms-0">@lang('common.order_by.title')</label>
             <select class="form-control" wire:model="orderBy" id="orderBy">
-                <option value="id">@lang('common.order_by.id')</option>
+                <option value="payments.id">@lang('common.order_by.id')</option>
                 <option value="status">@lang('common.order_by.status')</option>
-                <option value="created_at">@lang('common.order_by.created_at')</option>
+                <option value="payments.created_at">@lang('common.order_by.created_at')</option>
             </select>
         </div>
         <div class="input-group input-group-static">

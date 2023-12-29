@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class OrderTable extends Component
 {
@@ -86,7 +87,7 @@ class OrderTable extends Component
 
         DB::transaction(function () {
             Order::create([
-                'user_id' => $this->user_id,
+                'user_id' => Auth::id(),
                 'invoice_id' => $this->invoice_id,
                 'session' => session()->getId(),
                 'status' => 'pending',
@@ -102,7 +103,7 @@ class OrderTable extends Component
 
         DB::transaction(function () {
             $this->order->update([
-                'user_id' => $this->user_id,
+                'user_id' => Auth::id(),
                 'invoice_id' => $this->invoice_id,
                 'session' => $this->session,
                 'status' => $this->status,

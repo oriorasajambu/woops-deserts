@@ -1,0 +1,9 @@
+@extends('public.index')
+@section('heads')
+    <title>Orders</title>
+@endsection
+@section('content')
+    @livewire('card.order-card')
+@endsection
+@section('scripts')
+@endsection

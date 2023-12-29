@@ -59,12 +59,21 @@
     <script src="{{ url('assets/public/js/plugins/choices.min.js') }}"></script>
 
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
     <script src="{{ url('assets/public/js/material-kit.min.js?v=3.0.4') }}" type="text/javascript"></script>
 
     @yield('scripts')
 
     @livewireScripts
+
+    <script type="text/javascript">
+        // closing any modal dynamically
+        Livewire.on('cancel', modal => {
+            if (typeof modal === "string" || modal.length === 0 || modal === null) return;
+            let myModalEl = document.getElementById(modal);
+            let instance = bootstrap.Modal.getInstance(myModalEl)
+            instance.hide();
+        });
+    </script>
 </body>
 
 </html>

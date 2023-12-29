@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class ProductTable extends Component
 {
@@ -103,7 +104,7 @@ class ProductTable extends Component
                 'image' => 'storage/'. $fileLocation ?? $this->defThumbName,
                 'original' => 'storage/'. $fileLocation ?? $this->defThumbName,
                 'category_id' => $this->category_id,
-                'user_id' => '1',
+                'user_id' => Auth::id(),
             ]);
 		});
 

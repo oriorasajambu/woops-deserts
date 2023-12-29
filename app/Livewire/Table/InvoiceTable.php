@@ -15,9 +15,8 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use PDF;
 
 class InvoiceTable extends Component
 {
@@ -120,12 +119,13 @@ class InvoiceTable extends Component
 
             $payment = Payment::create([
                 'invoice_id' => $this->invoice->id,
+                'session' => $this->invoice->session,
                 'receipt' => $receipt,
             ]);
 
             $sales = Sales::create([
                 'invoice_id' => $this->invoice->id,
-                'user_id' => '1'
+                'user_id' => Auth::id()
             ]);
 
             if ($payment && $sales) {

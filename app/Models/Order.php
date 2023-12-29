@@ -14,6 +14,7 @@ class Order extends Model
         "invoice_id",
         "payment_id",
         "user_id",
+        "session",
         "status",
     ];
 
@@ -23,6 +24,14 @@ class Order extends Model
     public function invoice(): HasOne
     {
         return $this->hasOne(Invoice::class, 'id', 'invoice_id');
+    }
+
+    /**
+     * Get the paymet associated with the order.
+     */
+    public function payment(): HasOne
+    {
+        return $this->hasOne(Payment::class, 'id', 'payment_id');
     }
 
     public static function search($query)

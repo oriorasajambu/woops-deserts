@@ -12,6 +12,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class SalesTable extends Component
 {
@@ -57,7 +58,7 @@ class SalesTable extends Component
         DB::transaction(function () {
             Sales::create([
                 'invoice_id' => $this->invoice_id,
-                'user_id' => $this->user_id,
+                'user_id' => Auth::id(),
             ]);
 		});
 
@@ -71,7 +72,7 @@ class SalesTable extends Component
         DB::transaction(function () {
             $this->sales->update([
                 'invoice_id' => $this->invoice_id,
-                'user_id' => $this->user_id,
+                'user_id' => Auth::id(),
             ]);
 		});
 

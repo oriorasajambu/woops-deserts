@@ -77,7 +77,6 @@
                   'label' => 'Phone'
                 ])
               </div>
-              <h1 id="timer">Date: </h1>
               @livewire('button.complete-order-button')
             </div>
           </div>

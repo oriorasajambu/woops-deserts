@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Invoice extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "email" ,
+        "session",
+        "email",
         "country",
         "first_name",
         "last_name",
@@ -28,6 +30,11 @@ class Invoice extends Model
         "status",
         "canceled_by",
     ];
+
+    function payment(): HasOne
+    {
+        return $this->hasOne(Payment::class, 'invoice_id', 'invoice_id');
+    }
 
     public static function search($query)
 	{

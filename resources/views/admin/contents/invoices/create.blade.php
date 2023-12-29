@@ -136,41 +136,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="input-group input-group-outline my-3 {{ $errors->has('sub_total') ? 'is-invalid' : 'mb-2' }}">
-                                    <label class="form-label" for="sub_total">Sub Total</label>
-                                    <input wire:model.defer="sub_total" type="text" class="form-control" name="sub_total" id="sub_total">
-                                </div>
-                                @error('sub_total')
-                                    <div class="invalid-feedback text-xs mb-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col">
-                                <div class="input-group input-group-outline my-3 {{ $errors->has('tax') ? 'is-invalid' : 'mb-2' }}">
-                                    <label class="form-label" for="tax">Tax</label>
-                                    <input wire:model.defer="tax" type="text" class="form-control" name="tax" id="tax">
-                                </div>
-                                @error('tax')
-                                    <div class="invalid-feedback text-xs mb-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col">
-                                <div class="input-group input-group-outline my-3 {{ $errors->has('total') ? 'is-invalid' : 'mb-2' }}">
-                                    <label class="form-label" for="total">Total</label>
-                                    <input wire:model.defer="total" type="text" class="form-control" name="total" id="total">
-                                </div>
-                                @error('total')
-                                    <div class="invalid-feedback text-xs mb-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
                     </div>
                     <div class="col">
                         @foreach($carts as $cart)
@@ -206,7 +171,17 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                        @endforeach
+                        <div class="row mt-3">
+                            <div class="col-9 ">
+                                <h6>Subtotal </h6>
+                                <h6>Total</h6>
+                            </div>
+                            <div class="col-3 text-end">
+                                <h6>@lang('currency.in_ID') {{ number_format($sub_total, 2) }}</h6>
+                                <h6>@lang('currency.in_ID') {{ number_format($total, 2) }}</h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

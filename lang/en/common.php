@@ -23,5 +23,7 @@ return [
         'val_3' => '30',
         'val_4' => '40',
         'val_5' => '50',
-    ]
+    ],
+    'cancel_confirmation_title' => 'Are you sure you want to cancel this order?',
+    'cancel_confirmation_desc' => 'This action will cancel the order and irreversible'
 ];

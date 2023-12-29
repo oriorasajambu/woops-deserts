@@ -2,13 +2,18 @@
 
 namespace App\Livewire\Navbar;
 
+use App\Models\Order;
 use Livewire\Component;
 
 class DashboardNavbar extends Component
 {
+    public $sessionId = true;
     public $isCartEmpty;
     public $cartQuantity;
-    public $sessionId;
+
+
+    public $isOrderEmpty = true;
+    public $orderQuantity;
 
     protected $listeners = [
         'productAdded' => 'incrementQuantity',
@@ -18,8 +23,12 @@ class DashboardNavbar extends Component
     public function mount()
     {
         $this->sessionId = session()->getId();
+
         $this->isCartEmpty = \Cart::session($this->sessionId)->isEmpty();
         $this->cartQuantity = \Cart::session($this->sessionId)->getContent()->count();
+
+        $this->isOrderEmpty = count(Order::where('session', session()->getId())->where('status', '!=', 'canceled')->get()) == 0;
+        $this->orderQuantity = count(Order::where('session', session()->getId())->where('status', '!=', 'canceled')->get());
     }
 
     public function render()

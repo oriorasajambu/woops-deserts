@@ -109,16 +109,15 @@
                                 </div>
                             </td>
                             <td >
-                                <div class="d-flex flex-row">
+                                <div class="d-flex flex-row align-items-center">
                                     @foreach ((array) json_decode($order->invoice->orders) as $item)
-                                        <div class="d-flex flex-column ms-1" >
+                                        <div>
                                             <h6 class="mb-0 text-xs text-center">{{ $item->name }}</h6>
                                             <span class="badge bg-gradient-success">{{ $item->attributes->variant }}</span>
-                                            <p class="text-xs text-secondary mt-1 text-center">Quantity <b>X{{ $item->quantity }}</b> </p>
+                                            <p class="text-xs text-secondary mt-1 text-center mb-0">Quantity <b>X{{ $item->quantity }}</b> </p>
                                         </div>
                                     @endforeach
                                 </div>
-                                
                             </td>
                             <td>
                                 <div class="d-flex flex-column justify-content-center">
@@ -133,30 +132,30 @@
                                     </p>
                                 </div>  
                             </td>
-                            <td class="d-flex flex-row justify-content-center gap-2">
-                                <div class="d-flex flex-column justify-content-center">
+                            <td class="d-flex flex-row justify-content-center align-items-center gap-2 my-auto">
+                                <div class="d-flex flex-column justify-content-center align-items-center my-auto">
                                     @switch($order->status)
                                         @case("finish")
-                                            <a href="{{ route('receipt.download', $order->payment_id) }}" target="_blank" class="btn btn-icon btn-sm btn-info" type="button">
+                                            <a href="{{ route('receipt.download', $order->payment_id) }}" target="_blank" class="btn btn-icon btn-sm btn-info m-0" type="button">
                                                 <span class="btn-inner--icon"><i class="fa-solid fa-download"></i></span>
                                             </a>
                                             @break
                                         @case("inprogress")
-                                            <button wire:click="updateToFinish({{ $order->id }})" class="btn btn-icon btn-sm btn-success" type="button">
+                                            <button wire:click="updateToFinish({{ $order->id }})" class="btn btn-icon btn-sm btn-success m-0" type="button">
                                                 <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
                                             </button>
                                             @break
                                         @case("pending")
                                             @break
                                         @default
-                                            <button wire:click="updateToPending({{ $order->id }})" class="btn btn-icon btn-sm btn-success" type="button">
+                                            <button wire:click="updateToPending({{ $order->id }})" class="btn btn-icon btn-sm btn-success m-0" type="button">
                                                 <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
                                             </button>
                                     @endswitch
                                     
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
-                                    <button wire:click="initData({{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-order" class="btn btn-icon btn-sm btn-primary" type="button">
+                                    <button wire:click="initData({{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-order" class="btn btn-icon btn-sm btn-primary m-0" type="button">
                                         <span class="btn-inner--icon"><i class="fa-solid fa-trash"></i></span>
                                     </button>
                                 </div>

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('invoice_id')
                 ->references('id')
                 ->on('invoices')
-                ->nullOnDelete();
+                ->onDelete('cascade');
             $table->foreign('payment_id')
                 ->references('id')
                 ->on('payments')

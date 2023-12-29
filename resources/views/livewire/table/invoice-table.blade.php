@@ -151,51 +151,52 @@
                             {{ $invoice->canceled_by == 'none' ? '-' :  $invoice->canceled_by }}
                         </td>
                         <td class="d-flex flex-row justify-content-center gap-2">
-                            <div class="d-flex flex-column justify-content-center">
-                                @switch($invoice->status)
-                                    @case("paid")
-                                        @break
-                                    @case("uploaded")
-                                        <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-confirm-invoice" class="btn btn-icon btn-sm btn-success" type="button">
+                            @switch($invoice->status)
+                                @case("paid")
+                                    @break
+                                @case("uploaded")
+                                    <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-confirm-invoice" class="btn btn-icon btn-sm btn-success" type="button">
+                                        <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
+                                    </button>
+                                    <button wire:click="updateToPending({{ $invoice->id }})" class="btn btn-icon btn-sm btn-warning" type="button">
+                                        <span class="btn-inner--icon"><i class="fa-solid fa-xmark"></i></span>
+                                    </button>
+                                    @break
+                                @case("pending")
+                                    <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-upload-invoice"
+                                        class="btn btn-icon btn-sm btn-success" type="button">
+                                        <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
+                                    </button>
+                                    <button wire:click="updateToCanceled({{ $invoice->id }})" class="btn btn-icon btn-sm btn-danger" type="button">
+                                        <span class="btn-inner--icon"><i class="fa-solid fa-xmark"></i></span>
+                                    </button>
+                                    @break
+                                @case("canceled")
+                                    @if ($invoice->canceled_by == 'admin')
+                                        <button wire:click="updateToPending({{ $invoice->id }})" class="btn btn-icon btn-sm btn-success" type="button">
                                             <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
                                         </button>
-                                        @break
-                                    @case("pending")
-                                        <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-upload-invoice"
-                                            class="btn btn-icon btn-sm btn-success" type="button">
-                                            <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
-                                        </button>
-                                        <button wire:click="updateToCanceled({{ $invoice->id }})" class="btn btn-icon btn-sm btn-danger" type="button">
-                                            <span class="btn-inner--icon"><i class="fa-solid fa-xmark"></i></span>
-                                        </button>
-                                        @break
-                                    @case("canceled")
-                                        @if ($invoice->canceled_by == 'admin')
-                                            <button wire:click="updateToPending({{ $invoice->id }})" class="btn btn-icon btn-sm btn-success" type="button">
-                                                <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
-                                            </button>
-                                        @endif
-                                        @break
-                                @endswitch
-                                <a href="{{ route('invoices.download', $invoice->id) }}" target="_blank" class="btn btn-icon btn-sm btn-info" type="button">
-                                    <span class="btn-inner--icon"><i class="fa-solid fa-download"></i></span>
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
+                                    @endif
+                                    @break
+                            @endswitch
+                            <a href="{{ route('invoices.download', $invoice->id) }}" target="_blank" class="btn btn-icon btn-sm btn-info" type="button">
+                                <span class="btn-inner--icon"><i class="fa-solid fa-download"></i></span>
+                            </a>
+                            @if ($invoice->status == "paid")
                                 <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-invoice" class="btn btn-icon btn-sm btn-primary" type="button">
                                     <span class="btn-inner--icon"><i class="fa-solid fa-trash"></i></span>
                                 </button>
-                                @if ($invoice->status == "uploaded")
-                                    <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-detail-invoice" class="btn btn-icon btn-sm btn-info" type="button">
-                                        <span class="btn-inner--icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                    </button>
-                                @endif
-                            </div>
+                            @endif
+                            @if ($invoice->status == "uploaded")
+                                <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-detail-invoice" class="btn btn-icon btn-sm btn-info" type="button">
+                                    <span class="btn-inner--icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">No invoices found...</td>
+                        <td colspan="7" class="text-center">No invoices found...</td>
                     </tr>
                 @endforelse
             </tbody>

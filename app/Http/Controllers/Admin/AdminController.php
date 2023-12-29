@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use PDF;
 
 class AdminController extends Controller
@@ -52,7 +54,19 @@ class AdminController extends Controller
         $monthlyInvoiceResult = array_column($monthlyInvoiceQuery, 'num_rows');
         $currentMonthCycle = array_column($monthlyInvoiceQuery, 'month');
 
-        // dd($dailyOrderResult);
+        $sumPaidOrderQuery = Order::selectRaw('dayname(orders.created_at) day, count(*) num_rows, sum(sub_total) sub_total_pament, sum(total) total_payment, sum(tax) tax_payment')
+            ->join('invoices', 'invoices.id', '=', 'orders.invoice_id')
+            ->orderBy('orders.created_at', 'DESC')
+            ->groupBy(DB::raw('Date(orders.created_at)'))
+            ->where('invoices.status', 'paid')
+            ->whereDate('orders.created_at', '>=', Carbon::now()->addDays(-1))
+            ->get()
+            ->toArray();
+
+        $sumPaidOrderResult = array_column($sumPaidOrderQuery, 'num_rows');
+        $sumPaidOrderPayment = array_column($sumPaidOrderQuery, 'sub_total_pament');
+
+        // dd($sumPaidOrderPayment);
 
         $data = [
             'page' => 'dashboard',
@@ -62,6 +76,8 @@ class AdminController extends Controller
             'daily_order_payment' => $dailyPayment,
             'monthly_order_chart' => $monthlyOrderResult,
             'monthly_invoice_chart' => $monthlyInvoiceResult,
+            'sum_paid_order_total' => $sumPaidOrderResult,
+            'sum_paid_order_per' => $sumPaidOrderPayment,
         ];
         return view('admin.contents.dashboard.index', $data);
     }
@@ -141,7 +157,8 @@ class AdminController extends Controller
 
 
     public function logout() {
-        session()->flush();
+        Session::flush();
+        Auth::logout();
         return redirect()->to('/');
     }
 
