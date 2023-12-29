@@ -4,6 +4,11 @@ return [
         'index' => 'Produk',
         'create' => 'Produk - Tambah'
     ],
+    'modal' => [
+        'add' => 'Buat Produk Baru',
+        'delete' => 'Hapus Produk',
+        'edit' => 'Edit Produk',
+    ],
 	'button' => [
         'add' => 'Tambah Produk',
         'delete' => 'Hapus Produk',
@@ -21,7 +26,7 @@ return [
         'created_by' => 'Dibuat Oleh',
         'action' => 'Aksi',
     ],
-    'options' => 'Pilih Category',
+    'category' => 'Pilih Category',
     'alert' => [
         'success' => [
             'edit' => 'Berhasil Merubah Produk',
