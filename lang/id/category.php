@@ -4,6 +4,11 @@ return [
         'index' => 'Kategori',
         'create' => 'Kategori - Tambah'
     ],
+    'modal' => [
+        'add' => 'Buat Kategori Baru',
+        'delete' => 'Hapus Kategori',
+        'edit' => 'Edit Kategori',
+    ],
 	'button' => [
         'add' => 'Tambah Kategori',
         'delete' => 'Hapus Kategori',

@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             // ConfigSeeder::class,
             CategorySeeder::class,
-            // ProductSeeder::class,
-            // InvoiceSeeder::class,
-            // ExpenseSeeder::class,
+            ProductSeeder::class,
+            InvoiceSeeder::class,
+            ExpenseSeeder::class,
         ]);
     }
 }
