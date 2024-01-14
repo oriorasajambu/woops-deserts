@@ -14,15 +14,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name'              => 'Rio Wirawan',
-            'username'          => 'oriorasajambu',
-            'email'             => 'oriorasajambu@gmail.com',
+            'name'              => 'Wulanda Apriliani',
+            'username'          => 'wulandaapriliani',
+            'email'             => 'wulandaajha@gmail.com',
             'email_verified_at' => Carbon::now(),
-            'password'          => 'rio21011994',
-            'gender'            => 'men',
-            'position'          => 'Middle Web Developer',
-            'phone_number'      => '082362200442',
-            'address'           => 'Jalan Setiabudi Pasar 1 Komp. Puri Tanjung Sari No. 42',
+            'password'          => '030403',
+            'gender'            => 'women',
+            'position'          => 'Admin',
+            'phone_number'      => '082277027943',
+            'address'           => 'Jalan Gatot Subroto No.15 Sei Sikambing C Medan Helvetia',
             'city'              => 'Medan',
             'country'           => 'Indonesia',
         ]);

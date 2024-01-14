@@ -1,26 +1,27 @@
 <?php
 return [
 	'title' => [
-        'index' => 'Invoice',
-        'create' => 'Invoice - Tambah'
+        'index' => 'Faktur',
+        'create' => 'Faktur - Tambah'
     ],
     'modal' => [
-        'add' => 'Buat Invoice Baru',
-        'delete' => 'Hapus Invoice',
-        'edit' => 'Ubah Invoice',
+        'add' => 'Buat Faktur Baru',
+        'delete' => 'Hapus Faktur',
+        'edit' => 'Ubah Faktur',
         'upload' => 'Upload Bukti Pembayaran',
+        'select' => 'Pilih Produk',
         'confirm' => 'Konfirmasi',
     ],
 	'button' => [
-        'add' => 'Tambah Invoice',
-        'delete' => 'Hapus Invoice',
-        'edit' => 'Ubah Invoice',
+        'add' => 'Tambah Faktur',
+        'delete' => 'Hapus Faktur',
+        'edit' => 'Ubah Faktur',
         'upload' => 'Upload',
         'next' => 'Selanjutnya',
     ],
     'table' => [
-        'title' => 'Tabel Invoice',
-        'id' => 'Id Invoice',
+        'title' => 'Tabel Faktur',
+        'id' => 'Id Faktur',
         'info' => 'Info Customer',
         'location' => 'Lokasi',
         'company' => 'Perusahaan',
@@ -30,9 +31,9 @@ return [
     ],
     'alert' => [
         'success' => [
-            'edit' => 'Berhasil Merubah Invoice',
-            'delete' => 'Berhasil Menghapus Invoice',
-            'create' => 'Berhasil Membuat Invoice',
+            'edit' => 'Berhasil Merubah Faktur',
+            'delete' => 'Berhasil Menghapus Faktur',
+            'create' => 'Berhasil Membuat Faktur',
         ],
     ]
 ];

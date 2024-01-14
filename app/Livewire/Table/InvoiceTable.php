@@ -96,7 +96,7 @@ class InvoiceTable extends Component
     }
 
     public function updateToPaid() {
-        $order = Order::where('invoice_id', $this->invoice->id)->firstOrFail();
+        $order = Order::where('invoice_id', $this->invoice->id)->first();
         if ($order) {
             $orders = [];
             foreach((array) json_decode($this->invoice->orders) as $item) {
@@ -140,6 +140,8 @@ class InvoiceTable extends Component
                     $this->refreshContent('Success Update Status to Paid', 'modal-confirm-invoice');
                 }
             }
+        } else {
+            $this->refreshContent(null, 'Gagal Mengupdate Invoice [Pesanan Tidak ditemukan]', 'modal-confirm-invoice');
         }
     }
 
@@ -332,13 +334,16 @@ class InvoiceTable extends Component
         $this->orders = $cart->getContent()->toJson();
     }
 
-    public function refreshContent(?string $message = null, ?string $modal = null) {
+    public function refreshContent(?string $message = null, ?string $failMessage = null, ?string $modal = null) {
         //Close the active modal
         if ($modal) {
             $this->dispatch('cancel', $modal);
         }
         if ($message) {
             session()->flash('message', $message);
+        }
+        if ($failMessage) {
+            session()->flash('failMessage', $failMessage);
         }
         $this->clearFields();
         $refresh;

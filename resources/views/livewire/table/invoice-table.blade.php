@@ -7,6 +7,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+        @elseif(session()->has('failMessage'))
+            <div class="alert alert-danger text-white alert-dismissible fade show" role="alert">
+                <span class="alert-text">{{ session('failMessage') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
     </div>
 

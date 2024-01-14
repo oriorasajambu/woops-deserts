@@ -9,6 +9,7 @@ return [
         'delete' => 'Delete Invoice',
         'edit' => 'Edit Invoice',
         'upload' => 'Upload Payment Proof',
+        'select' => 'Select Product',
         'confirm' => 'Confirm',
     ],
 	'button' => [

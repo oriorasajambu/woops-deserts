@@ -21,7 +21,8 @@
 
     <div class="d-flex flex-row">
         <div class="input-group input-group-dynamic">
-            <input class="form-control" wire:model="query" wire:keydown.enter="search()" placeholder="Search" id="search" type="text" aria-label="search" aria-describedby="search">
+            <input class="form-control" wire:model="query" wire:keydown.enter="search()" placeholder="Search"
+                id="search" type="text" aria-label="search" aria-describedby="search">
         </div>
         <div class="input-group input-group-static">
             <label for="orderBy" class="ms-0">@lang('common.order_by.title')</label>
@@ -54,7 +55,7 @@
     </div>
 
     <div class="d-flex flex-row justify-content-center pt-3">
-        {{$tempData->links()}}
+        {{ $tempData->links() }}
     </div>
 
     <div class="d-flex flex-row justify-content-center">
@@ -88,15 +89,18 @@
                             <div class="d-flex flex-column justify-content-center">
                                 <h6 class="mb-0 text-xs">#{{ sprintf('%07d', $sales->invoice->id) }}</h6>
                                 @switch($sales->invoice->status)
-                                    @case("paid")
+                                    @case('paid')
                                         <span class="badge bg-gradient-success">{{ $sales->invoice->status }}</span>
-                                        @break
-                                    @case("uploaded")
+                                    @break
+
+                                    @case('uploaded')
                                         <span class="badge bg-gradient-warning">{{ $sales->invoice->status }}</span>
-                                        @break
-                                    @case("pending")
+                                    @break
+
+                                    @case('pending')
                                         <span class="badge bg-gradient-info">{{ $sales->invoice->status }}</span>
-                                        @break
+                                    @break
+
                                     @default
                                         <span class="badge bg-gradient-danger">{{ $sales->invoice->status }}</span>
                                 @endswitch
@@ -104,7 +108,8 @@
                         </td>
                         <td>
                             <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">{{ $sales->invoice->first_name }} {{ $sales->invoice->last_name }}</h6>
+                                <h6 class="mb-0 text-xs">{{ $sales->invoice->first_name }}
+                                    {{ $sales->invoice->last_name }}</h6>
                                 <p class="text-xs text-secondary mb-0">{{ $sales->invoice->email }}</p>
                                 <p class="text-xs text-secondary mb-0">{{ $sales->invoice->phone }}</p>
                             </div>
@@ -112,19 +117,19 @@
                         <td>
                             <div class="d-flex flex-column justify-content-center">
                                 <p class="text-xs text-secondary mb-0">
-                                    {{ $sales->invoice->country }}, 
-                                    {{ $sales->invoice->province }}, 
-                                    {{ $sales->invoice->city }}, 
+                                    {{ $sales->invoice->country }},
+                                    {{ $sales->invoice->province }},
+                                    {{ $sales->invoice->city }},
                                 </p>
                                 <p class="text-xs text-secondary mb-0">
-                                    {{ $sales->invoice->address }}, 
+                                    {{ $sales->invoice->address }},
                                 </p>
                                 <p class="text-xs text-secondary mb-0">
                                     {{ $sales->invoice->postal_code }}
                                 </p>
                             </div>
                         </td>
-                        <td>{{ $sales->invoice->company ?? '-'  }}</td>
+                        <td>{{ $sales->invoice->company ?? '-' }}</td>
                         <td>
                             <div class="d-flex flex-column justify-content-center">
                                 <p class="text-xs text-secondary mb-0">
@@ -136,53 +141,51 @@
                                 <p class="text-xs text-secondary mb-0">
                                     Total @lang('currency.in_ID') {{ number_format($sales->invoice->total, 2) }}
                                 </p>
-                            </div>  
+                            </div>
                         </td>
                         <td class="d-flex flex-row justify-content-center gap-2">
-                            <div class="d-flex flex-column justify-content-center">
-                                <a href="{{ route('receipt.download', $sales->id) }}" target="_blank" class="btn btn-sm btn-info" type="button">
-                                    Unduh Resi
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <button wire:click="initData({{ $sales->id }})" data-bs-toggle="modal" data-bs-target="#modal-detail-sales" class="btn btn-sm btn-info" type="button">
-                                    Detail
-                                </button>
-                            </div>
+                            @if ($sales->invoice->status == 'paid')
+                                <div class="d-flex flex-column justify-content-center">
+                                    <a href="{{ route('receipt.download', $sales->id) }}" target="_blank"
+                                        class="btn btn-sm btn-info" type="button">
+                                        Unduh Resi
+                                    </a>
+                                </div>
+                            @endif
                         </td>
                     </tr>
-                @empty
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">No sales found...</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+                <tfoot>
                     <tr>
-                        <td colspan="6" class="text-center">No sales found...</td>
+                        <th class="text-secondary text-xxs px-2 opacity-7">
+                            @lang('sales.table.id')
+                        </th>
+                        <th class="text-secondary text-xxs px-2 opacity-7">
+                            @lang('sales.table.info')
+                        </th>
+                        <th class="text-secondary text-xxs px-2 opacity-7">
+                            @lang('sales.table.location')
+                        </th>
+                        <th class="text-secondary text-xxs px-2 opacity-7">
+                            @lang('sales.table.company')
+                        </th>
+                        <th class="text-secondary text-xxs px-2 opacity-7">
+                            @lang('sales.table.price')
+                        </th>
+                        <th class="text-secondary text-xxs px-2 opacity-7 text-center">
+                            @lang('sales.table.action')
+                        </th>
                     </tr>
-                @endforelse
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class="text-secondary text-xxs px-2 opacity-7">
-                        @lang('sales.table.id')
-                    </th>
-                    <th class="text-secondary text-xxs px-2 opacity-7">
-                        @lang('sales.table.info')
-                    </th>
-                    <th class="text-secondary text-xxs px-2 opacity-7">
-                        @lang('sales.table.location')
-                    </th>
-                    <th class="text-secondary text-xxs px-2 opacity-7">
-                        @lang('sales.table.company')
-                    </th>
-                    <th class="text-secondary text-xxs px-2 opacity-7">
-                        @lang('sales.table.price')
-                    </th>
-                    <th class="text-secondary text-xxs px-2 opacity-7 text-center">
-                        @lang('sales.table.action')
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+                </tfoot>
+            </table>
+        </div>
 
-    <div class="d-flex flex-row justify-content-center pt-3">
-        {{$tempData->links()}}
+        <div class="d-flex flex-row justify-content-center pt-3">
+            {{ $tempData->links() }}
+        </div>
     </div>
-</div>

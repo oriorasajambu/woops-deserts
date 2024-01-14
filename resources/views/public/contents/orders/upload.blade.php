@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content bg-light">
             <div class="modal-header">
-                <h5 class="modal-title">@lang('order.modal.upload')</h5>
+                <h5 class="modal-title">Upload Bukti Pembayaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,13 +11,13 @@
                 <div class="d-flex flex-column">
                     <div class="d-flex flex-row justify-content-center">
                         <div class="align-self-center">
-                        <img src="{{ asset('assets/public/img/logo_bca.png') }}" class="avatar avatar-xxl me-3">
+                        <img src="{{ asset('assets/public/img/logo_bri.png') }}" style="width: 100px">
                     </div>
                     </div>
-                    <h3 class="text-center">Make Payment Via BCA</h3>
-                    <h4 class="text-center">6475228867</h4>
-                    <p class="text-center">A.N Rio Wirawan</p>
-                    <p class="text-center">@lang('currency.in_ID') {{ $total }}</p>
+                    <h3 class="text-center">Buat Pembayaran Via BRI</h3>
+                    <h4 class="text-center">133301001105534</h4>
+                    <p class="text-center">A.N Wulanda Apriliani</p>
+                    <h4 class="text-center">@lang('currency.in_ID') {{ number_format($total, 2) }}</h4>
                 </div>
                 <input wire:model="image" type="file" name="image" accept="image/png,image/gif,image/jpeg"
                     class="{{ $errors->has('image') ? 'is-invalid' : '' }} w-100" aria-describedby="image">
@@ -28,8 +28,8 @@
                 @enderror
             </div>
             <div class="modal-footer pb-0">
-                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">@lang('common.cancel')</button>
-                <button type="submit" wire:click.prevent="uploadPayment" class="btn bg-gradient-success">@lang('order.button.upload')</button>
+                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" wire:click.prevent="uploadPayment" class="btn bg-gradient-success">Upload</button>
             </div>
         </div>
     </div>

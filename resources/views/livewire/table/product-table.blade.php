@@ -84,7 +84,7 @@
                     <th class="text-secondary text-xxs px-2 opacity-7">
                         @lang('product.table.created_by')
                     </th>
-                    <th class="text-secondary text-xxs px-2 opacity-7">
+                    <th class="text-secondary text-xxs px-2 opacity-7 text-center">
                         @lang('product.table.action')
                     </th>
                 </tr>
@@ -139,7 +139,7 @@
                                 <p class="text-xs font-weight-bold mb-0">{{ $product->user->name ?? '-' }}</p>
                             </div>
                         </td>
-                        <td class="d-flex align-middle gap-1">
+                        <td class="d-flex flex-column align-middle gap-1">
                             <button wire:click="initData({{ $product->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-product" class="btn btn-icon btn-sm btn-primary">
                                 Hapus
                             </button>
@@ -180,7 +180,7 @@
                     <th class="text-secondary text-xxs px-2 opacity-7">
                         @lang('product.table.created_by')
                     </th>
-                    <th class="text-secondary text-xxs px-2 opacity-7">
+                    <th class="text-secondary text-xxs px-2 opacity-7 text-center">
                         @lang('product.table.action')
                     </th>
                 </tr>

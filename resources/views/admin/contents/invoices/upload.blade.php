@@ -18,7 +18,7 @@
             </div>
             <div class="modal-footer pb-0">
                 <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">@lang('common.cancel')</button>
-                <button type="submit" wire:click.prevent="updateToUploaded" class="btn bg-gradient-danger">@lang('invoice.button.upload')</button>
+                <button type="submit" wire:click.prevent="updateToUploaded" class="btn bg-gradient-danger" data-bs-dismiss="modal">@lang('invoice.button.upload')</button>
             </div>
         </div>
     </div>
