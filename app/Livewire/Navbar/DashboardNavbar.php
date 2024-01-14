@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Navbar;
 
+use App\Models\Category;
 use App\Models\Order;
 use Livewire\Component;
 
@@ -10,7 +11,7 @@ class DashboardNavbar extends Component
     public $sessionId = true;
     public $isCartEmpty;
     public $cartQuantity;
-
+    public $categories;
 
     public $isOrderEmpty = true;
     public $orderQuantity;
@@ -29,6 +30,8 @@ class DashboardNavbar extends Component
 
         $this->isOrderEmpty = count(Order::where('session', session()->getId())->where('status', '!=', 'canceled')->get()) == 0;
         $this->orderQuantity = count(Order::where('session', session()->getId())->where('status', '!=', 'canceled')->get());
+
+        $this->categories = Category::all();
     }
 
     public function render()

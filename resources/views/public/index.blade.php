@@ -24,6 +24,9 @@
 
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ url('assets/public/css/material-kit.css?v=3.0.4') }}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ url('assets/public/css/custom.css') }}" rel="stylesheet">
+
     @yield('heads')
 
     @livewireStyles
@@ -74,6 +77,7 @@
             instance.hide();
         });
     </script>
+    
 </body>
 
 </html>

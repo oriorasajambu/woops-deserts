@@ -1,5 +1,5 @@
 <div wire:ignore.self class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modal-detail-invoice">
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content bg-light">
             <div class="modal-header">
                 <h5 class="modal-title">@lang('invoice.modal.detail')</h5>
@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div id="modal-body-form" class="modal-body">
-                <img src="{{ asset($invoice->payment_proof ?? '') }}" class="img-fluid">
+                <img src="{{ asset($invoice->payment_proof ?? '') }}" style="width: 100%" class="img-fluid">
             </div>
         </div>
     </div>

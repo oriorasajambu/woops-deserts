@@ -8,11 +8,15 @@ return [
         'add' => 'Create New Invoice',
         'delete' => 'Delete Invoice',
         'edit' => 'Edit Invoice',
+        'upload' => 'Upload Payment Proof',
+        'confirm' => 'Confirm',
     ],
 	'button' => [
         'add' => 'Add Invoice',
         'delete' => 'Delete Invoice',
         'edit' => 'Edit Invoice',
+        'upload' => 'Upload',
+        'next' => 'Next',
     ],
     'table' => [
         'title' => 'Invoice Table',

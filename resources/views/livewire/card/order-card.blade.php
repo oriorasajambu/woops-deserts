@@ -23,7 +23,7 @@
                                 @foreach (json_decode($order->invoice->orders) as $item)
                                     <div class="d-flex px-2 py-1">
                                         <div class="align-self-center">
-                                            <img src="{{ asset($item->associatedModel->original) }}" class="avatar avatar-sm me-3">
+                                            <img src="{{ asset(json_decode($item->associatedModel->original)[0]) }}" class="avatar avatar-sm me-3">
                                         </div>
                                         <div class="d-flex flex-column justify-content-center">
                                             <h6 class="mb-0 text-xs">{{ $item->name }}</h6>
@@ -60,14 +60,14 @@
                                             @case("uploaded")
                                                 @break
                                             @case("pending")
-                                                <a href="{{ route('invoices.download', $order->invoice->id) }}" target="_blank" class="btn btn-icon btn-sm btn-info my-0" type="button">
-                                                    <span class="btn-inner--icon"><i class="fa-solid fa-download"></i></span>
+                                                <a href="{{ route('invoices.download', $order->invoice->id) }}" target="_blank" class="btn btn-sm btn-info my-0" type="button">
+                                                    Unduh Faktur
                                                 </a>
-                                                <button wire:click="initData({{ $order->invoice->id }},{{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-upload-payment" class="btn btn-icon btn-sm btn-success my-0" type="button">
-                                                    <span class="btn-inner--icon"><i class="fa-solid fa-upload"></i></span>
+                                                <button wire:click="initData({{ $order->invoice->id }},{{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-upload-payment" class="btn btn-sm btn-success my-0" type="button">
+                                                    Upload Bukti Pembayaran
                                                 </button>
-                                                <button wire:click="initData({{ $order->invoice->id }},{{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-cancel-order" class="btn btn-icon btn-sm btn-danger my-0" type="button">
-                                                    <span class="btn-inner--icon"><i class="fa-solid fa-trash"></i></span>
+                                                <button wire:click="initData({{ $order->invoice->id }},{{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-cancel-order" class="btn btn-sm btn-danger my-0" type="button">
+                                                    Batalkan
                                                 </button>
                                                 @break
                                             @case("canceled")

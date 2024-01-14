@@ -8,11 +8,15 @@ return [
         'add' => 'Buat Invoice Baru',
         'delete' => 'Hapus Invoice',
         'edit' => 'Ubah Invoice',
+        'upload' => 'Upload Bukti Pembayaran',
+        'confirm' => 'Konfirmasi',
     ],
 	'button' => [
         'add' => 'Tambah Invoice',
         'delete' => 'Hapus Invoice',
         'edit' => 'Ubah Invoice',
+        'upload' => 'Upload',
+        'next' => 'Selanjutnya',
     ],
     'table' => [
         'title' => 'Tabel Invoice',

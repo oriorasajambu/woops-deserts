@@ -126,7 +126,7 @@
                         </td>
                         <td>
                             <div class="d-flex flex-column">
-                                <img class="avatar avatar-sm me-3" src="{{ asset($product->original) }}" />
+                                <img class="avatar avatar-sm me-3" src="{{ asset(json_decode($product->original)[0]) }}" />
                             </div>
                         </td>
                         <td>
@@ -141,14 +141,10 @@
                         </td>
                         <td class="d-flex align-middle gap-1">
                             <button wire:click="initData({{ $product->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-product" class="btn btn-icon btn-sm btn-primary">
-                                <span class="btn-inner--icon">
-                                    <i class="fa-solid fa-trash"></i>
-                                </span>
+                                Hapus
                             </button>
                             <button wire:click="initData({{ $product->id }})" data-bs-toggle="modal" data-bs-target="#modal-edit-product" class="btn btn-icon btn-sm btn-warning">
-                                <span class="btn-inner--icon">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </span>
+                                Ubah
                             </button>
                         </td>
                     </tr>

@@ -136,27 +136,27 @@
                                 <div class="d-flex flex-column justify-content-center align-items-center my-auto">
                                     @switch($order->status)
                                         @case("finish")
-                                            <a href="{{ route('receipt.download', $order->payment_id) }}" target="_blank" class="btn btn-icon btn-sm btn-info m-0" type="button">
-                                                <span class="btn-inner--icon"><i class="fa-solid fa-download"></i></span>
+                                            <a href="{{ route('receipt.download', $order->payment_id) }}" target="_blank" class="btn btn-sm btn-info m-0" type="button">
+                                                Unduh Resi
                                             </a>
                                             @break
                                         @case("inprogress")
-                                            <button wire:click="updateToFinish({{ $order->id }})" class="btn btn-icon btn-sm btn-success m-0" type="button">
-                                                <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
+                                            <button wire:click="updateToFinish({{ $order->id }})" class="btn btn-sm btn-success m-0" type="button">
+                                                Selesai
                                             </button>
                                             @break
                                         @case("pending")
                                             @break
                                         @default
-                                            <button wire:click="updateToPending({{ $order->id }})" class="btn btn-icon btn-sm btn-success m-0" type="button">
-                                                <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
+                                            <button wire:click="updateToPending({{ $order->id }})" class="btn btn-sm btn-success m-0" type="button">
+                                                Pending
                                             </button>
                                     @endswitch
                                     
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
-                                    <button wire:click="initData({{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-order" class="btn btn-icon btn-sm btn-primary m-0" type="button">
-                                        <span class="btn-inner--icon"><i class="fa-solid fa-trash"></i></span>
+                                    <button wire:click="initData({{ $order->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-order" class="btn btn-sm btn-primary m-0" type="button">
+                                        Hapus
                                     </button>
                                 </div>
                             </td>

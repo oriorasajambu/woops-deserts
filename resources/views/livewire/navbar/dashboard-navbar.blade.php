@@ -28,6 +28,26 @@
                                     </a>
                                 </li>
                             @endif
+                            
+                            <li class="nav-item dropdown dropdown-hover mx-2">
+                                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center text-primary" id="dropdownMenuPages"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="material-icons opacity-6 me-2 text-md">layers</i>
+                                    Kategori
+                                    <img src="{{ url('assets/public/img/down-arrow-dark.svg') }}" alt="down-arrow"
+                                        class="arrow ms-auto ms-md-2">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
+                                    aria-labelledby="dropdownMenuPages">
+                                    <div class="d-none d-lg-block">
+                                        @foreach ($categories as $item)
+                                            <a class="dropdown-item border-radius-md" href="#{{ $item->slug }}">
+                                                <span>{{ $item->name }}</span>
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </li>
 
                             @if(!$isOrderEmpty)
                                 <li class="nav-item dropdown dropdown-hover mx-2">
@@ -40,38 +60,20 @@
                                 </li>
                             @endif
 
-                            {{-- <li class="nav-item dropdown dropdown-hover mx-2">
-                                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center text-primary" id="dropdownMenuPages"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="material-icons opacity-6 me-2 text-md">layers</i>
-                                    Pages
-                                    <img src="{{ url('assets/public/img/down-arrow-dark.svg') }}" alt="down-arrow"
-                                        class="arrow ms-auto ms-md-2">
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
-                                    aria-labelledby="dropdownMenuPages">
-                                    <div class="d-none d-lg-block">
-                                        <a href="./pages/about-us.html" class="dropdown-item border-radius-md">
-                                            <span>About Us</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li> --}}
-
                             <li class="nav-item dropdown dropdown-hover mx-2">
                                 @auth
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center text-primary" href="{{ route('admin') }}">
                                         <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
-                                        Dashboard
+                                        Halaman Utama
                                     </a>
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center text-primary" href="{{ route('logout') }}">
                                         <i class="material-icons opacity-6 me-2 text-md">logout</i>
-                                        Log Out
+                                        Keluar
                                     </a>
                                 @else
                                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center text-primary" href="{{ route('login') }}">
                                         <i class="material-icons opacity-6 me-2 text-md">login</i>
-                                        Log In
+                                        Masuk
                                     </a>
                                 @endauth
                             </li>

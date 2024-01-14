@@ -32,7 +32,7 @@ class ProductTable extends Component
 	public ?string $description = null;
 	public ?string $variant = null;
 	public ?string $price = null;
-    public $image = null;
+    public $image = [];
 	public ?int $product_id = null;
 	public ?int $category_id = null;
 	public ?string $categoryName = null;
@@ -52,7 +52,7 @@ class ProductTable extends Component
         'name'          => 'required|min:5',
         'description'   => 'required|min:5',
         'price'         => 'required|numeric',
-        'image'         => 'required|mimes:jpeg,png,jpg,gif|max:4096',
+        'image.*'       => 'required|mimes:jpeg,png,jpg,gif|max:4096',
     ];
 
     protected array $validationAttributes = [
@@ -89,10 +89,14 @@ class ProductTable extends Component
 		$this->validate();
 
         DB::transaction(function () {
-			if (!empty($this->image))
+			if (count($this->image) > 0)
             {
-                $filename = md5($this->image.microtime()).'_'.Str::random(30).'.'.$this->image->extension();
-                $fileLocation = $this->image->storeAs($this->defThumbPath, $filename, 'uploads');
+                $dataFileLocation = [];
+                foreach ($this->image as $image) {
+                    $filename = md5($image . microtime()) . '_' . Str::random(30) . '.' . $image->extension();
+                    $fileLocation = $image->storeAs($this->defThumbPath, $filename, 'uploads');
+                    array_push($dataFileLocation, 'storage/' . $fileLocation);
+                }
             }
 
             Product::create([
@@ -101,8 +105,7 @@ class ProductTable extends Component
                 'description' => $this->description,
                 'variant' => json_encode(explode(",", $this->variant)),
                 'price' => $this->price,
-                'image' => 'storage/'. $fileLocation ?? $this->defThumbName,
-                'original' => 'storage/'. $fileLocation ?? $this->defThumbName,
+                'original' => json_encode($dataFileLocation),
                 'category_id' => $this->category_id,
                 'user_id' => Auth::id(),
             ]);
@@ -116,23 +119,48 @@ class ProductTable extends Component
 		$this->validate();
 
         DB::transaction(function () {
-			if (!empty($this->image))
+			if (count($this->image) > 0)
             {
-                $filename = md5($this->image.microtime()).'_'.Str::random(30).'.'.$this->image->extension();
-                $fileLocation = $this->image->storeAs($this->defThumbPath, $filename, 'uploads');
+                $storage = Storage::disk('uploads');
+                $images = json_decode($this->product->original);
+
+                foreach ($images as $image) {
+                    $original = str_replace('storage/', '', $image);
+                    if ($storage->exists($original)) :
+                        $storage->delete($original);
+                    endif;
+                }
+
+                $dataFileLocation = [];
+                foreach ($this->image as $image) {
+                    $filename = md5($image . microtime()) . '_' . Str::random(30) . '.' . $image->extension();
+                    $fileLocation = $image->storeAs($this->defThumbPath, $filename, 'uploads');
+                    array_push($dataFileLocation, 'storage/' . $fileLocation);
+                }
             }
 
-            $this->product->update([
-                'name' => $this->name,
-                'slug' => Str::slug($this->name),
-                'description' => $this->description,
-                'variant' => json_encode(explode(",", $this->variant)),
-                'price' => $this->price,
-                'image' => 'storage/'. $fileLocation ?? $this->defThumbName,
-                'original' => 'storage/'. $fileLocation ?? $this->defThumbName,
-                'category_id' => $this->category_id,
-                'user_id' => '1',
-            ]);
+            if (count($this->image) > 0) {
+                $this->product->update([
+                    'name' => $this->name,
+                    'slug' => Str::slug($this->name),
+                    'description' => $this->description,
+                    'variant' => json_encode(explode(",", $this->variant)),
+                    'price' => $this->price,
+                    'original' => json_encode($dataFileLocation),
+                    'category_id' => $this->category_id,
+                    'user_id' => '1',
+                ]);
+            } else {
+                $this->product->update([
+                    'name' => $this->name,
+                    'slug' => Str::slug($this->name),
+                    'description' => $this->description,
+                    'variant' => json_encode(explode(",", $this->variant)),
+                    'price' => $this->price,
+                    'category_id' => $this->category_id,
+                    'user_id' => '1',
+                ]);
+            }
 		});
 
         $this->refreshContent(Lang::get('product.alert.success.create'), 'modal-edit-product');
@@ -144,12 +172,15 @@ class ProductTable extends Component
     public function delete()
     {
         $storage = Storage::disk('uploads');
-        $thumbnail = str_replace('storage/', '', $this->product->image);
-        $original = str_replace('storage/', '', $this->product->original);
-        if ($storage->exists($thumbnail) && $storage->exists($original)) :
-            $storage->delete($thumbnail);
-            $storage->delete($original);
-        endif;
+        $images = json_decode($this->product->original);
+
+        foreach ($images as $image) {
+            $original = str_replace('storage/', '', $image);
+            if ($storage->exists($original)) :
+                $storage->delete($original);
+            endif;
+        }
+
         $this->product->delete();
         $this->refreshContent(Lang::get('product.alert.success.delete'), 'modal-delete-product');
     }

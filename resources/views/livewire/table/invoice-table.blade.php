@@ -140,7 +140,7 @@
                                     Sub Total @lang('currency.in_ID') {{ number_format($invoice->sub_total, 2) }},
                                 </p>
                                 <p class="text-xs text-secondary mb-0">
-                                    Tax @lang('currency.in_ID') {{ number_format($invoice->tax, 2) }},
+                                    Pajak @lang('currency.in_ID') {{ number_format($invoice->tax, 2) }},
                                 </p>
                                 <p class="text-xs text-secondary mb-0">
                                     Total @lang('currency.in_ID') {{ number_format($invoice->total, 2) }}
@@ -150,46 +150,47 @@
                         <td>
                             {{ $invoice->canceled_by == 'none' ? '-' :  $invoice->canceled_by }}
                         </td>
-                        <td class="d-flex flex-row justify-content-center gap-2">
+                        <td class="d-flex flex-column justify-content-center gap-2">
                             @switch($invoice->status)
                                 @case("paid")
                                     @break
                                 @case("uploaded")
-                                    <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-confirm-invoice" class="btn btn-icon btn-sm btn-success" type="button">
-                                        <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
+                                    <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-confirm-invoice" 
+                                        class="btn btn-sm btn-success" type="button">
+                                        Konfirmasi
                                     </button>
-                                    <button wire:click="updateToPending({{ $invoice->id }})" class="btn btn-icon btn-sm btn-warning" type="button">
-                                        <span class="btn-inner--icon"><i class="fa-solid fa-xmark"></i></span>
+                                    <button wire:click="updateToPending({{ $invoice->id }})" class="btn btn-sm btn-warning" type="button">
+                                        Pending
                                     </button>
                                     @break
                                 @case("pending")
                                     <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-upload-invoice"
-                                        class="btn btn-icon btn-sm btn-success" type="button">
-                                        <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
+                                        class="btn btn-sm btn-success" type="button">
+                                        Upload
                                     </button>
-                                    <button wire:click="updateToCanceled({{ $invoice->id }})" class="btn btn-icon btn-sm btn-danger" type="button">
-                                        <span class="btn-inner--icon"><i class="fa-solid fa-xmark"></i></span>
+                                    <button wire:click="updateToCanceled({{ $invoice->id }})" class="btn btn-sm btn-danger" type="button">
+                                        Batalkan
                                     </button>
                                     @break
                                 @case("canceled")
                                     @if ($invoice->canceled_by == 'admin')
-                                        <button wire:click="updateToPending({{ $invoice->id }})" class="btn btn-icon btn-sm btn-success" type="button">
-                                            <span class="btn-inner--icon"><i class="fa-solid fa-check"></i></span>
+                                        <button wire:click="updateToPending({{ $invoice->id }})" class="btn btn-sm btn-success" type="button">
+                                            Pending
                                         </button>
                                     @endif
                                     @break
                             @endswitch
-                            <a href="{{ route('invoices.download', $invoice->id) }}" target="_blank" class="btn btn-icon btn-sm btn-info" type="button">
-                                <span class="btn-inner--icon"><i class="fa-solid fa-download"></i></span>
+                            <a href="{{ route('invoices.download', $invoice->id) }}" target="_blank" class="btn btn-sm btn-info" type="button">
+                                Unduh Faktur
                             </a>
                             @if ($invoice->status == "paid")
-                                <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-invoice" class="btn btn-icon btn-sm btn-primary" type="button">
-                                    <span class="btn-inner--icon"><i class="fa-solid fa-trash"></i></span>
+                                <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-invoice" class="btn btn-sm btn-primary" type="button">
+                                    Hapus
                                 </button>
                             @endif
                             @if ($invoice->status == "uploaded")
-                                <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-detail-invoice" class="btn btn-icon btn-sm btn-info" type="button">
-                                    <span class="btn-inner--icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <button wire:click="initData({{ $invoice->id }})" data-bs-toggle="modal" data-bs-target="#modal-detail-invoice" class="btn btn-sm btn-info" type="button">
+                                    Detail
                                 </button>
                             @endif
                         </td>

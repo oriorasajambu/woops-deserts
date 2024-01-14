@@ -2,7 +2,7 @@
     @foreach($carts as $cart)
         <div class="row mt-3 align-items-center">
             <div class="col-2">
-                <img src="{{ asset($cart->associatedModel->original) }}" style="width: 75px;height: 75px;" />
+                <img src="{{ asset(json_decode($cart->associatedModel->original)[0]) }}" style="width: 75px;height: 75px;" />
             </div>
             <div class="col-6">
                 <h5 class="font-weight-bolder mb-0 pb-0">{{ $cart->name }} X{{ $cart->quantity }}</h5>
@@ -10,7 +10,7 @@
                 <div class="text-xs font-weight-bold mb-0 mt-1 d-flex flex-column">
                     <div class="form-check p-0">
                         @foreach (json_decode($cart->associatedModel->variant) as $key => $item)
-                            <input type="radio" name="{{ $cart->associatedModel->slug }}-variant" id="{{ $cart->associatedModel->slug }}-{{ $item }}" {{ $cart->attributes->variant == $item ? 'checked' : '' }} wire:click="onClickVariant({{$cart->id}},'{{ $item }}')" value="{{ $item }}">
+                            <input required type="radio" name="{{ $cart->associatedModel->slug }}-variant" id="{{ $cart->associatedModel->slug }}-{{ $item }}" {{ $cart->attributes->variant == $item ? 'checked' : '' }} wire:click="onClickVariant({{$cart->id}},'{{ $item }}')" value="{{ $item }}">
                             <label class="custom-control-label font-weight-bolder" for="{{ $cart->associatedModel->slug }}-{{ $item }}">{{ $item }}</label>
                         @endforeach
                     </div>
@@ -40,8 +40,8 @@
         <input type="hidden" name="tax" value="{{($subTotalWithTax - $subTotal)}}">
         <input type="hidden" name="total" value="{{$subTotalWithTax}}">
         <div class="col-9 ">
-            <h6>Subtotal </h6>
-            <h6>Estimated taxes</h6>
+            <h6>Subtotal</h6>
+            <h6>Perkiraan Pajak</h6>
             <h6>Total</h6>
         </div>
         <div class="col-3 text-end">

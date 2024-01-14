@@ -8,12 +8,12 @@
                 </button>
             </div>
             <div id="modal-body-form" class="modal-body">
-                <h6>Confirm Payment?</h6>
-                <p>This Action is irreversible</p>
+                <h6>Konfirmasi Pembayaran?</h6>
+                <p>Aksi ini tidak dapat di batalkan</p>
             </div>
             <div class="modal-footer pb-0">
                 <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">@lang('common.cancel')</button>
-                <button type="submit" wire:click.prevent="updateToPaid" class="btn bg-gradient-danger">Confirm</button>
+                <button type="submit" wire:click.prevent="updateToPaid" class="btn bg-gradient-danger">Ya</button>
             </div>
         </div>
     </div>

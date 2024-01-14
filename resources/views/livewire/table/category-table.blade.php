@@ -78,16 +78,12 @@
                         </td>
                         <td class="d-flex align-middle gap-1">
                             <button wire:click="initData({{$category->id}})" data-bs-toggle="modal" 
-                                data-bs-target="#modal-delete-category" class="btn btn-icon btn-sm btn-primary">
-                                <span class="btn-inner--icon">
-                                    <i class="fa-solid fa-trash"></i>
-                                </span>
+                                data-bs-target="#modal-delete-category" class="btn btn-sm btn-primary">
+                                Hapus
                             </button>
                             <button wire:click="initData({{$category->id}})" data-bs-toggle="modal" 
-                                data-bs-target="#modal-edit-category" class="btn btn-icon btn-sm btn-warning">
-                                <span class="btn-inner--icon">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </span>
+                                data-bs-target="#modal-edit-category" class="btn btn-sm btn-warning">
+                                Ubah
                             </button>
                         </td>
                     </tr>

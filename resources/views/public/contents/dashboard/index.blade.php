@@ -5,7 +5,7 @@
 @section('content')
     @include('public.components.header')
 
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4">
         <section class="pt-3 pb-4" id="count-stats">
             <div class="container">
                 <div class="row">
@@ -13,20 +13,23 @@
                         <div class="row">
                             <div class="col-md-6 position-relative">
                                 <div class="p-3 text-center">
-                                    <h1 class="text-gradient text-primary"><span id="state1" countTo="{{ count($categories) }}">0</span>+
+                                    <h1 class="text-gradient text-primary">
+                                        <span id="state1" countTo="{{ count($categories) }}">0</span>+
                                     </h1>
-                                    <h5 class="mt-3">Cake Category</h5>
-                                    <p class="text-sm font-weight-normal">From best seller, short cake, lebaran you are covered</p>
+                                    <h5 class="mt-3">Kategori Kue</h5>
+                                    <p class="text-sm font-weight-normal">Dari best seller, short cake, lebaran kamu
+                                        tercover</p>
                                 </div>
                                 <hr class="vertical dark">
                             </div>
                             <div class="col-md-6 position-relative">
                                 <div class="p-3 text-center">
-                                    <h1 class="text-gradient text-primary"> <span id="state2" countTo="{{ count($products) }}">0</span>+
+                                    <h1 class="text-gradient text-primary">
+                                        <span id="state2" countTo="{{ count($products) }}">0</span>+
                                     </h1>
-                                    <h5 class="mt-3">Products</h5>
-                                    <p class="text-sm font-weight-normal">Mix the sections, change the colors and
-                                        unleash your creativity</p>
+                                    <h5 class="mt-3">Produk</h5>
+                                    <p class="text-sm font-weight-normal">Campur bagiannya, ubah warnanya dan
+                                        lepaskan kreativitas Anda</p>
                                 </div>
                             </div>
                         </div>
@@ -34,17 +37,9 @@
                 </div>
             </div>
         </section>
-        <section class="my-5 py-5">
-            @foreach($categories as $category)
-                <div class="row">
-                    <h1>{{$category->name}}</h1>
-                    @foreach($category->products as $product)
-                        @livewire('card.product-card', ['product' => $product])
-                    @endforeach
-                </div>
-            @endforeach
-        </section>
     </div>
+
+    @livewire('product.product-section')
 @endsection
 @section('scripts')
     <script type="text/javascript">
@@ -70,7 +65,43 @@
                 countUp2.start();
             } else {
                 console.error(countUp2.error);
+            }
+        }
+    </script>
+
+    <script>
+        function scrollTo(sectionId) {
+            var MIN_PIXELS_PER_STEP = 16;
+            var MAX_SCROLL_STEPS = 30;
+            var target = document.getElementById(elementId);
+            var scrollContainer = target;
+            do {
+                scrollContainer = scrollContainer.parentNode;
+                if (!scrollContainer) return;
+                scrollContainer.scrollTop += 1;
+            } while (scrollContainer.scrollTop == 0);
+
+            var targetY = 0;
+            do {
+                if (target == scrollContainer) break;
+                targetY += target.offsetTop;
+            } while (target = target.offsetParent);
+
+            var pixelsPerStep = Math.max(MIN_PIXELS_PER_STEP,
+                (targetY - scrollContainer.scrollTop) / MAX_SCROLL_STEPS);
+
+            var stepFunc = function() {
+                scrollContainer.scrollTop =
+                    Math.min(targetY, pixelsPerStep + scrollContainer.scrollTop);
+
+                if (scrollContainer.scrollTop >= targetY) {
+                    return;
+                }
+
+                window.requestAnimationFrame(stepFunc);
             };
+
+            window.requestAnimationFrame(stepFunc);
         }
     </script>
 @endsection

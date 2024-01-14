@@ -131,7 +131,7 @@
                                     Sub Total @lang('currency.in_ID') {{ number_format($payment->sub_total, 2) }},
                                 </p>
                                 <p class="text-xs text-secondary mb-0">
-                                    Tax @lang('currency.in_ID') {{ number_format($payment->tax, 2) }},
+                                    Pajak @lang('currency.in_ID') {{ number_format($payment->tax, 2) }},
                                 </p>
                                 <p class="text-xs text-secondary mb-0">
                                     Total @lang('currency.in_ID') {{ number_format($payment->total, 2) }}
@@ -140,13 +140,13 @@
                         </td>
                         <td class="d-flex flex-row justify-content-center gap-2">
                             <div class="d-flex flex-column justify-content-center">
-                                <a href="{{ route('receipt.download', $payment->id) }}" target="_blank" class="btn btn-icon btn-sm btn-info" type="button">
-                                    <span class="btn-inner--icon"><i class="fa-solid fa-download"></i></span>
+                                <a href="{{ route('receipt.download', $payment->id) }}" target="_blank" class="btn btn-sm btn-info" type="button">
+                                    Unduh Resi
                                 </a>
                             </div>
                             <div class="d-flex flex-column justify-content-center">
-                                <button wire:click="initData({{ $payment->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-payment" class="btn btn-icon btn-sm btn-primary" type="button">
-                                    <span class="btn-inner--icon"><i class="fa-solid fa-trash"></i></span>
+                                <button wire:click="initData({{ $payment->id }})" data-bs-toggle="modal" data-bs-target="#modal-delete-payment" class="btn btn-sm btn-primary" type="button">
+                                    Hapus
                                 </button>
                             </div>
                         </td>

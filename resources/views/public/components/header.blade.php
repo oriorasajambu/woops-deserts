@@ -1,5 +1,5 @@
 <header class="header-2">
-    <div class="page-header min-vh-75 relative" style="background-image: url({{ url('assets/public/img/bgheader.jpg') }})">
+    <div class="page-header min-vh-50 relative" style="background-image: url({{ url('assets/public/img/bgheader.jpg') }})">
         <span class="mask bg-gradient-primary opacity-4"></span>
         <div class="container">
             <div class="row">

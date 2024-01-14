@@ -20,8 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('variant')->nullable();
             $table->string('price');
-            $table->string('image');
-            $table->string('original');
+            $table->json('original');
             $table->timestamps();
             $table->foreign('category_id')
                 ->references('id')

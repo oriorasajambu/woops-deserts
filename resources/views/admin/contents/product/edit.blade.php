@@ -65,9 +65,9 @@
                     </div>
                 @enderror
 
-                <input wire:model="image" type="file" name="image" accept="image/png,image/gif,image/jpeg"
+                <input required multiple wire:model="image" type="file" name="image" accept="image/png,image/gif,image/jpeg"
                     class="{{ $errors->has('image') ? 'is-invalid' : '' }} w-100" aria-describedby="image">
-                @error('image')
+                @error('image.*')
                     <div class="invalid-feedback text-xs mt-2">
                         {{ $message }}
                     </div>
