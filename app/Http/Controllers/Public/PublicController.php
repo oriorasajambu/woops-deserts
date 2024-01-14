@@ -17,6 +17,7 @@ class PublicController extends Controller
             'categories' => Category::all(),
             'products' => Product::all(),
             'sessionId' => session()->getId(),
+            'page' => 'dashboard',
         ];
         return view('public.contents.dashboard.index', $data);
     }
@@ -24,6 +25,7 @@ class PublicController extends Controller
     public function cart() {
         $data = [
             'sessionId' => session()->getId(),
+            'page' => 'cart',
         ];
         return view('public.contents.cart.index', $data);
     }
@@ -64,12 +66,16 @@ class PublicController extends Controller
     }
 
     public function customerOrders() {
-        return view('public.contents.orders.index');
+        $data = [
+            'page' => 'orders'
+        ];
+        return view('public.contents.orders.index', $data);
     }
 
     public function signin() {
         $data = [
             'pages' => 'Sign In',
+            'page' => 'signin'
         ];
         return view('auth.sign-in', $data);
     }

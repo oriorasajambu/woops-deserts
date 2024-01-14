@@ -48,11 +48,13 @@ class ProductTable extends Component
 
     //Update & Store Rules
 	protected array $rules = [
-        'category_id'   => 'required',
+        'category_id'   => 'required|exist:categories,id',
         'name'          => 'required|min:5',
         'description'   => 'required|min:5',
         'price'         => 'required|numeric',
-        'image.*'       => 'required|mimes:jpeg,png,jpg,gif|max:4096',
+        'image'         => 'required',
+        'image.*'       => 'mimes:jpeg,png,jpg,gif|max:4096',
+        
     ];
 
     protected array $validationAttributes = [

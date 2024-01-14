@@ -93,6 +93,7 @@ class ProductSection extends Component
         $this->category_id  = $product->category_id;
         $this->user_id      = $product->user_id;
         $this->images       = json_decode($product->original);
+        $this->position     = 0;
         $this->image        = $this->images[$this->position];
         $this->imagesCount  = count($this->images) - 1;
     }

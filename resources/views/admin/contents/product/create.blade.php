@@ -13,7 +13,8 @@
                     <select wire:model.defer="category_id" class="form-control" id="category" name="category">
                         <option value="" selected>@lang('product.category')</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}"
+                                {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -26,7 +27,8 @@
                 <div
                     class="input-group input-group-static {{ $errors->has('name') || $errors->has('slug') ? 'is-invalid' : 'mb-2' }}">
                     <label>@lang('product.table.name')</label>
-                    <input wire:model.defer="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                    <input wire:model.defer="name" type="text" class="form-control" name="name"
+                        value="{{ old('name') }}">
                 </div>
                 @error('name')
                     <div class="invalid-feedback text-xs mb-2">
@@ -39,9 +41,9 @@
                     </div>
                 @enderror
 
-                <div
-                    class="input-group input-group-dynamic {{ $errors->has('description') ? 'is-invalid' : 'mb-2' }}">
-                    <textarea wire:model.defer="description" name="description" class="form-control" rows="5" placeholder="@lang('product.table.description')" spellcheck="false">{{ old('description') }}</textarea>
+                <div class="input-group input-group-dynamic {{ $errors->has('description') ? 'is-invalid' : 'mb-2' }}">
+                    <textarea wire:model.defer="description" name="description" class="form-control" rows="5"
+                        placeholder="@lang('product.table.description')" spellcheck="false">{{ old('description') }}</textarea>
                 </div>
                 @error('description')
                     <div class="invalid-feedback text-xs mb-2">
@@ -49,15 +51,16 @@
                     </div>
                 @enderror
 
-                <div
-                    class="input-group input-group-static {{ $errors->has('variant') ? 'is-invalid' : 'mb-2' }}">
+                <div class="input-group input-group-static {{ $errors->has('variant') ? 'is-invalid' : 'mb-2' }}">
                     <label>@lang('product.table.variant')</label>
-                    <input wire:model.defer="variant" type="text" class="form-control" name="variant" value="{{ old('variant') }}">
+                    <input wire:model.defer="variant" type="text" class="form-control" name="variant"
+                        value="{{ old('variant') }}">
                 </div>
 
                 <div class="input-group input-group-static {{ $errors->has('price') ? 'is-invalid' : 'mb-2' }}">
                     <label>@lang('product.table.price')</label>
-                    <input wire:model.defer="price" type="text" class="form-control" name="price" value="{{ old('price') }}">
+                    <input wire:model.defer="price" type="text" class="form-control" name="price"
+                        value="{{ old('price') }}">
                 </div>
                 @error('price')
                     <div class="invalid-feedback text-xs mb-2">
@@ -65,8 +68,14 @@
                     </div>
                 @enderror
 
-                <input required multiple wire:model="image" type="file" name="image" accept="image/png,image/gif,image/jpeg"
+                <input required multiple wire:model="image" type="file" name="image"
+                    accept="image/png,image/gif,image/jpeg"
                     class="{{ $errors->has('image') ? 'is-invalid' : '' }} w-100" aria-describedby="image">
+                @error('image')
+                    <div class="invalid-feedback text-xs mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
                 @error('image.*')
                     <div class="invalid-feedback text-xs mt-2">
                         {{ $message }}
@@ -74,8 +83,10 @@
                 @enderror
             </div>
             <div class="modal-footer pb-0">
-                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">@lang('common.cancel')</button>
-                <button type="submit" wire:click.prevent="store" class="btn bg-gradient-success">@lang('product.button.add')</button>
+                <button type="button" class="btn btn-outline-warning"
+                    data-bs-dismiss="modal">@lang('common.cancel')</button>
+                <button type="submit" wire:click.prevent="store"
+                    class="btn bg-gradient-success">@lang('product.button.add')</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <div wire:ignore.self class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modal-detail-product">
-    <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div id="modal-create-product" class="modal-content bg-light">
             <div class="modal-header">
                 <h5 class="modal-title">Detail Produk</h5>
@@ -14,7 +14,7 @@
                             <!-- slider container -->
                             <div class="slider">
                                 <div class="slide">
-                                    <img src="{{ asset($image) }}" alt="" class="img-fluid" />
+                                    <img src="{{ asset($image) }}" alt="" class="w-100 img-fluid" />
                                 </div>
                             </div>
                         </div>
@@ -27,14 +27,16 @@
                             </p>
                             <p>{{ $product->description }}</p>
                             <h4>@lang('currency.in_ID') {{ number_format($product->price, 2) }}</h4>
-                            <div>
-                                <button class="btn btn-success" type="button" wire:click="prevSlide">
-                                    Sebelumnya
-                                </button>
-                                <button class="btn btn-success" type="button" wire:click="nextSlide">
-                                    Selanjutnya
-                                </button>
-                            </div>
+                            @if (count($images) > 1)
+                                <div>
+                                    <button class="btn btn-success" type="button" wire:click="prevSlide">
+                                        Sebelumnya
+                                    </button>
+                                    <button class="btn btn-success" type="button" wire:click="nextSlide">
+                                        Selanjutnya
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
